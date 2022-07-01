@@ -1,7 +1,17 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
+from datetime import datetime
 import pandas as pd
+import os
+import sys
+
+
+#append timestamp to the file
+
+now = datetime.now()
+day_month_year = now.strftime("%D%m%Y") #DDMMYY
+
 
 #endpoints to /read :{national, business, sports, world, politics, technology, startup , entertainment, miscellaneous, hatke, science, automobile}
 website = "https://inshorts.com/en/read/technology"
@@ -12,8 +22,6 @@ path = "/home/hashmap/chromedriver"
 # headless mode
 options = Options()
 options.headless = True
-
-
 
 # Drivers init
 service = Service(executable_path=path)
@@ -54,7 +62,7 @@ my_dictionary = {'Title':title, 'Timestamp':timestamp,'Author': author, 'Date':d
 
 # export data to csv using pandas - data frame
 df_headlines = pd.DataFrame(my_dictionary)
-df_headlines.to_csv('shorts-headless.csv')
+df_headlines.to_csv(f'headlines-{day_month_year}.csv')
 
 #close driver (browser instance)
 driver.quit()
