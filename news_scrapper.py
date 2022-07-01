@@ -15,7 +15,7 @@ application_path = os.path.dirname(sys.executable)
 #append timestamp to the file
 
 now = datetime.now()
-day_month_year = now.strftime("%D%m%Y") #DDMMYY
+day_month_year = now.strftime("%d%m%Y") #DDMMYY
 
 
 #endpoints to /read :{national, business, sports, world, politics, technology, startup , entertainment, miscellaneous, hatke, science, automobile}
