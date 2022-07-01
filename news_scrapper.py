@@ -7,6 +7,11 @@ import os
 import sys
 
 
+# convert to executable file
+
+application_path = os.path.dirname(sys.executable)
+
+
 #append timestamp to the file
 
 now = datetime.now()
@@ -62,7 +67,9 @@ my_dictionary = {'Title':title, 'Timestamp':timestamp,'Author': author, 'Date':d
 
 # export data to csv using pandas - data frame
 df_headlines = pd.DataFrame(my_dictionary)
-df_headlines.to_csv(f'headlines-{day_month_year}.csv')
+filename = f'headlines-{day_month_year}.csv'
+final_path = os.path.join(application_path, filename)
+df_headlines.to_csv(final_path)
 
 #close driver (browser instance)
 driver.quit()
